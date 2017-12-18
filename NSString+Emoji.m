@@ -12,7 +12,6 @@
 
 +(BOOL)checkIsChinese:(int)checkChar{
     BOOL isChinese = NO;
-    DDLogInfo(@" a = %0x" , checkChar);
     // a >= 0x4e00 && a <= 0x9fff
     if( checkChar >= 0x4e00 && checkChar <= 0x9fff ){
         isChinese = YES;
