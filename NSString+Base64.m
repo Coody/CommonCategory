@@ -28,7 +28,7 @@
     else{
         NSLog(@"Decrypt base64 string success.");
     }
-    return [decryptString cpoy];
+    return [decryptString copy];
 }
 
 -(NSString *)encryptToBase64{
