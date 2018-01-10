@@ -10,12 +10,11 @@
 
 @implementation NSString (Base64)
 
--(NSString *)decryptFromBase64String:(NSString *)encryptBase64String{
+-(NSString *)decryptFromBase64{
     NSString *decryptString = nil;
     BOOL isOK = NO;
-    if( encryptBase64String != nil && 
-        ![encryptBase64String isEqualToString:@""] ){
-        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:encryptBase64String 
+    if( ![self isEqualToString:@""] ){
+        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:self 
                                                                   options:NSDataBase64DecodingIgnoreUnknownCharacters];
         decryptString = [[NSString alloc] initWithData:decodedData 
                                               encoding:NSUTF8StringEncoding];

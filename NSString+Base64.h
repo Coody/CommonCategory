@@ -10,7 +10,7 @@
 
 @interface NSString (Base64)
 
--(NSString *)decryptFromBase64String:(NSString *)encryptBase64String;
+-(NSString *)decryptFromBase64;
 
 -(NSString *)encryptToBase64;
 
