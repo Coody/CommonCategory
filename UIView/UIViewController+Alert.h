@@ -23,6 +23,11 @@
               withTitle:(NSString *)title 
       withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
+-(void)showAlertWithMsg:(NSString *)msg 
+              withTitle:(NSString *)title 
+          withBtnTitles:(NSArray<NSString *>*)btnArray 
+      withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
+
 // Error
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg;

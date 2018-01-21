@@ -8,6 +8,8 @@
 
 #import "UIViewController+Alert.h"
 
+#define kVWorldMaxAlertButtonCount (3)
+
 @implementation UIViewController (Alert)
 
 -(void)showAlertWithMsg:(NSString *)msg{
@@ -42,6 +44,17 @@
                withResponseBlock:responseBlock];
 }
 
+-(void)showAlertWithMsg:(NSString *)msg 
+              withTitle:(NSString *)title 
+          withBtnTitles:(NSArray<NSString *>*)btnArray 
+      withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock{
+    [self showAlertWithErrorCode:nil 
+                    withErrorMsg:msg 
+                  withAlertTitle:title 
+                 withButtonTitle:btnArray 
+               withResponseBlock:responseBlock];
+}
+
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg{
     [self showAlertWithErrorCode:number
@@ -72,6 +85,18 @@
                  withErrorMsg:(NSString *)msg
                withAlertTitle:(NSString *)title
             withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock{
+    [self showAlertWithErrorCode:number 
+                    withErrorMsg:msg 
+                  withAlertTitle:title 
+                 withButtonTitle:nil 
+               withResponseBlock:responseBlock];
+}
+
+-(void)showAlertWithErrorCode:(NSNumber *)number
+                 withErrorMsg:(NSString *)msg
+               withAlertTitle:(NSString *)title 
+              withButtonTitle:(NSArray<NSString *> *)titleArray 
+            withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock{
     NSString *totalMsg;
     if( number == nil ){
         totalMsg = msg;
@@ -83,14 +108,29 @@
                                                                    message:totalMsg
                                                             preferredStyle:(UIAlertControllerStyleAlert)];
     
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * action) {
-                                                         if( responseBlock != nil ){
-                                                             responseBlock(0);
-                                                         }
-                                                     }];
-    [alert addAction:okAction];
+    if( titleArray != nil && [titleArray count] > 0 ){
+        for( int i = 0 ; i < kVWorldMaxAlertButtonCount && i < [titleArray count] ; i++ ){
+            UIAlertAction *action = [UIAlertAction actionWithTitle:[titleArray objectAtIndex:i]
+                                                             style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 if( responseBlock != nil ){
+                                                                     responseBlock(i);
+                                                                 }
+                                                             }];
+            [alert addAction:action];
+        }
+    }
+    else{
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action) {
+                                                             if( responseBlock != nil ){
+                                                                 responseBlock(0);
+                                                             }
+                                                         }];
+        [alert addAction:okAction];
+    }
+    
     [self presentViewController:alert animated:YES completion:nil];
 }
 
