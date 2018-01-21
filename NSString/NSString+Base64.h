@@ -14,4 +14,8 @@
 
 -(NSString *)encryptToBase64;
 
+-(NSData *)decryptFromeBase64Data;
+
+-(NSData *)encryptToBase64Data;
+
 @end

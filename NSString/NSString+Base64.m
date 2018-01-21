@@ -37,4 +37,15 @@
     return [base64String copy];
 }
 
+-(NSData *)decryptFromeBase64Data{
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:self 
+                                                              options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return decodedData;
+}
+
+-(NSData *)encryptToBase64Data{
+    NSData *encodeData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return encodeData;
+}
+
 @end
