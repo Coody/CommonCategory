@@ -25,7 +25,7 @@
 
   * ModelManager （管理 Model 的 sharedInstance）
   
-    * CountryCodeTools （電話號碼與國碼）
+    i. CountryCodeTools （電話號碼與國碼）
 
 # NSArray
 
