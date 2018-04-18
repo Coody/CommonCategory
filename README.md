@@ -63,6 +63,7 @@
 * UIViewController+NavigationBar.h
 * UIViewController+PopVC.h
 * UIViewController+PushVC.h
+* UITextField+ClearButton.h
 
 # 聲明
 - 此 License 屬於 MIT ，請自由取用。
