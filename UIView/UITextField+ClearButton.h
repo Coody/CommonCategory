@@ -24,7 +24,7 @@
 -(void)setRightMarginDistance:(CGFloat )tempRightMargin;
 
 /**
- * @brief set Image for clear button
+ * @brief set Image for clear button (Optional, you can use setClearButton: methods to create your custom button)
  *
  * @detail 此按鈕的 frame 會依據 UITextField 的高度來做成 (width: textField.frame.size.height , height: textField.frame.size.height) 長寬相等的正方體
  *
@@ -34,7 +34,7 @@
 -(void)setClearButtonImage:(UIImage *)tempClearButtonImage;
 
 /**
- * @brief Set your custom clear button
+ * @brief Set your custom clear button (Optional, you can only use setClearButtonImage: methods)
  *
  * @detail 此按鈕的 frame 會依據你的按鈕 frame 來設定大小
  * @detail This button's frame will use your button's frame.
