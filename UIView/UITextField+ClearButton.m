@@ -40,17 +40,13 @@ Dynamic_Property(NSNumber*, customClearButtonMode, setCustomClearButtonMode:)
 Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
 
 -(void)initialCustomClearButton{
-    static BOOL isFirstTime = YES;
-    if( isFirstTime ){
-        isFirstTime = NO;
-        self.isShow = @NO;// 目前沒用到
-        self.clearButtonImageView = nil;
-        // 設定 Clear Button Mode
-        self.customClearButtonMode = @(self.clearButtonMode);
-        self.rightMargin = @(kXSGTextFieldClearButtonRightMargin);
-        self.clearButtonMode = UITextFieldViewModeNever;
-        [self resetClearButton];
-    }
+    self.isShow = @NO;// 目前沒用到
+    self.clearButtonImageView = nil;
+    // 設定 Clear Button Mode
+    self.customClearButtonMode = @(self.clearButtonMode);
+    self.rightMargin = @(kXSGTextFieldClearButtonRightMargin);
+    self.clearButtonMode = UITextFieldViewModeNever;
+    [self resetClearButton];
 }
 
 -(void)setRightMarginDistance:(CGFloat )tempRightMargin{
