@@ -3,7 +3,6 @@
 //  TextFieldTool
 //
 //  Created by CoodyChou on 2018/4/16.
-//  Copyright © 2018年 CoodyChou. All rights reserved.
 //
 
 #import "UITextField+ClearButton.h"
@@ -47,6 +46,8 @@ Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
     self.rightMargin = @(kXSGTextFieldClearButtonRightMargin);
     self.clearButtonMode = UITextFieldViewModeNever;
     [self resetClearButton];
+    [self addTarget:self action:@selector(editTextField:) forControlEvents:(UIControlEventEditingChanged)];
+
 }
 
 -(void)setRightMarginDistance:(CGFloat )tempRightMargin{
@@ -145,6 +146,5 @@ Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
     }
 }
 
-#pragma mark - Private Runtime Property
 
 @end

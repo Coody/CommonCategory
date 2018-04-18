@@ -3,7 +3,6 @@
 //  TextFieldTool
 //
 //  Created by CoodyChou on 2018/4/16.
-//  Copyright © 2018年 CoodyChou. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,40 +10,42 @@
 @interface UITextField (ClearButton)
 
 /**
- * @brief 初始化
+ * @brief Initialize Custon clear button
  *
- * @warning 一定要呼叫否則 clear button 會沒作用
+ * @warning must call this methods or clear button can't work.
  */
 -(void)initialCustomClearButton;
 
 /**
- * @brief 設定按鈕距離右邊的邊界多少，沒設定的話預設為 6.0f
+ * @brief set right margin, default is 6.0f
  *
- * @param tempRightMargin : 不得為負數，請輸入 >= 0 的 CGFloat
+ * @param tempRightMargin : no negative number, please use >= 0 CGFloat value.
  */
 -(void)setRightMarginDistance:(CGFloat )tempRightMargin;
 
 /**
- * @brief 設定 clear button 的 Image
+ * @brief set Image for clear button
  *
  * @detail 此按鈕的 frame 會依據 UITextField 的高度來做成 (width: textField.frame.size.height , height: textField.frame.size.height) 長寬相等的正方體
+ *
+ * @detail button's frame is (width: textField.frame.size.height , height: textField.frame.size.height)
+ *
  */
 -(void)setClearButtonImage:(UIImage *)tempClearButtonImage;
 
 /**
- * @brief 直接設定 clear button
+ * @brief Set your custom clear button
  *
  * @detail 此按鈕的 frame 會依據你的按鈕 frame 來設定大小
+ * @detail This button's frame will use your button's frame.
+ *
  */
 -(void)setClearButton:(UIButton *)tempClearButton;
 
-#pragma mark - 請加入監聽
+#pragma mark -
 /**
  * @brief 請加入 UITextField 的 UIControlEventEditingChanged
- *
- * @detail 加入 exp: [_textField addTarget:_textField action:@selector(editTextField:) forControlEvents:(UIControlEventEditingChanged)];
- *
- * @warning 如果不加入輸入字串會無法判斷。
+ * @brief ckeck TextField
  */
 -(void)editTextField:(id)sender;
 
