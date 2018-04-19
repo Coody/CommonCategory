@@ -55,6 +55,7 @@ Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
     }
     else{
         self.rightMargin = @(tempRightMargin);
+        [self resetClearButton];
     }
 }
 
