@@ -18,13 +18,13 @@ Dynamic_Property_Setter( ObjectType , property , setProperty , OBJC_ASSOCIATION_
 #define Dynamic_Property_Getter( ObjectType , property )\
 -(ObjectType)property\
 {\
-    return objc_getAssociatedObject( self, @selector(property) );\
+return objc_getAssociatedObject( self, @selector(property) );\
 }
 //////// Setter ////////
 #define Dynamic_Property_Setter( ObjectType , property , setProperty , associationFlag) \
 -(void)setProperty(ObjectType)property\
 {\
-    objc_setAssociatedObject(self, @selector(property), property, associationFlag);\
+objc_setAssociatedObject(self, @selector(property), property, associationFlag);\
 }
 ////////////////////////////////
 
@@ -39,15 +39,17 @@ Dynamic_Property(NSNumber*, customClearButtonMode, setCustomClearButtonMode:)
 Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
 
 -(void)initialCustomClearButton{
-    self.isShow = @NO;// 目前沒用到
-    self.clearButtonImageView = nil;
-    // 設定 Clear Button Mode
-    self.customClearButtonMode = @(self.clearButtonMode);
-    self.rightMargin = @(kXSGTextFieldClearButtonRightMargin);
-    self.clearButtonMode = UITextFieldViewModeNever;
-    [self resetClearButton];
-    [self addTarget:self action:@selector(editTextField:) forControlEvents:(UIControlEventEditingChanged)];
-
+    static BOOL isFirstTime = YES;
+    if( isFirstTime ){
+        isFirstTime = NO;
+        self.isShow = @NO;// 目前沒用到
+        self.clearButtonImageView = nil;
+        // 設定 Clear Button Mode
+        self.customClearButtonMode = @(self.clearButtonMode);
+        self.rightMargin = @(kXSGTextFieldClearButtonRightMargin);
+        self.clearButtonMode = UITextFieldViewModeNever;
+        [self resetClearButton];
+    }
 }
 
 -(void)setRightMarginDistance:(CGFloat )tempRightMargin{
@@ -80,9 +82,15 @@ Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
 }
 
 -(void)setClearButton:(UIButton *)tempClearButton{
+    if( self.clearBtn != nil ){
+        [self.clearBtn removeTarget:self action:@selector(pressedClearBtn:) forControlEvents:(UIControlEventTouchUpInside)];
+    }
     self.clearBtn = tempClearButton;
-    // 設定 frame 調整位置
+    [self.clearBtn addSubview:self.clearButtonImageView];
     
+    // 設定 frame 調整位置
+    [self resetClearButton];
+    [self resetImagePosition];
 }
 
 #pragma mark - Private
@@ -134,17 +142,18 @@ Dynamic_Property(NSNumber*, rightMargin , setRightMargin:)
         if( [self checkTextField] ){
             // 顯示圖片、 enable button
             [self.clearBtn setEnabled:YES];
+            [self.clearBtn setHidden:NO];
             [self.clearButtonImageView setHidden:NO];
             self.isShow = @YES;
         }
         else{
             // 隱藏圖片、 disable button
             [self.clearBtn setEnabled:NO];
+            [self.clearBtn setHidden:YES];
             [self.clearButtonImageView setHidden:YES];
             self.isShow = @NO;
         }
     }
 }
-
 
 @end
