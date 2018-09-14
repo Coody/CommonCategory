@@ -8,12 +8,30 @@
 
 #import "UIViewController+Keyboard.h"
 
-#import "Constants.h"
 #include <objc/runtime.h>
+
+#pragma makr - Dynamic Property
+////////////////////////////////
+#define Dynamic_Property( ObjectType , property , setProperty )\
+Dynamic_Property_Getter( ObjectType , property)\
+Dynamic_Property_Setter( ObjectType , property , setProperty , OBJC_ASSOCIATION_RETAIN_NONATOMIC )
+//////// Getter ////////
+#define Dynamic_Property_Getter( ObjectType , property )\
+-(ObjectType)property\
+{\
+return objc_getAssociatedObject( self, @selector(property) );\
+}
+//////// Setter ////////
+#define Dynamic_Property_Setter( ObjectType , property , setProperty , associationFlag) \
+-(void)setProperty(ObjectType)property\
+{\
+objc_setAssociatedObject(self, @selector(property), property, associationFlag);\
+}
+////////////////////////////////
 
 @implementation UIViewController (Keyboard)
 
-CATEGORY_PROPERTY_GET_SET(UITapGestureRecognizer*, tapGesture, setTapGesture:)
+Dynamic_Property(UITapGestureRecognizer*, tapGesture, setTapGesture:)
 
 -(void)addTap{
     if ( self.tapGesture == nil ) {
