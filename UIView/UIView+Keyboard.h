@@ -5,8 +5,11 @@
 //  Created by coody on 2018/9/17.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface UIView (Keyboard)
-@property (nonatomic , assign) BOOL isAddObserverForKeyboard;
+
+-(void)initialKeyboardHeightObserver;
 
 -(void)addKeyboardObserver;
 
