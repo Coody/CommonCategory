@@ -30,15 +30,20 @@ objc_setAssociatedObject(self, @selector(property), property, associationFlag);\
 ////////////////////////////////
 
 @implementation UIViewController (Keyboard)
-
+Dynamic_Property(NSNumber *, isNeedIgnore, setIsNeedIgnore:)
 Dynamic_Property(UITapGestureRecognizer*, tapGesture, setTapGesture:)
 
--(void)addTap{
+-(void)addTap:(BOOL)isNeedIgnoreTouch{
+    self.isNeedIgnore = @(isNeedIgnoreTouch);
     if ( self.tapGesture == nil ) {
         self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
-        [self.tapGesture setCancelsTouchesInView:NO];
     }
+    [self.tapGesture setCancelsTouchesInView:![self.isNeedIgnore boolValue]];
     [self.view addGestureRecognizer:self.tapGesture];
+}
+
+-(void)addTap{
+    [self addTap:YES];
 }
 
 -(void)tap:(id)sender{

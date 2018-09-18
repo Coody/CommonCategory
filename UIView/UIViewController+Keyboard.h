@@ -10,6 +10,7 @@
 
 @interface UIViewController (Keyboard)
 
+-(void)addTap:(BOOL)isNeedIgnoreTouch;
 -(void)addTap;
 
 -(void)tap:(id)sender;
