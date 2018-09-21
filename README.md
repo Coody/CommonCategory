@@ -58,8 +58,10 @@
 
 * UITableViewCell+Bg.h
 * UIView+BackgroundView.h
+* UIView+Keyboard.h  <--- 畫面會依照你的 View 來做鍵盤監聽，鍵盤出現則會讓他可以滾動，鍵盤縮回則會回復原狀（請在此 view 有 superVeiw 後做）
+                          UIView will active keyboard height observer , and change UIView's height and add UIScrollView to             scroll.(Please call the initial function after UIView has a superview. )
 * UIViewController+Alert.h
-* UIViewController+Keyboard.h
+* UIViewController+Keyboard.h  <--- 點擊畫面會自動縮回鍵盤（如果發現 TableViewCell 點擊不靈敏，請設定 isNeedIgnore = YES )
 * UIViewController+NavigationBar.h
 * UIViewController+PopVC.h
 * UIViewController+PushVC.h
@@ -67,3 +69,4 @@
 
 # 聲明
 - 此 License 屬於 MIT ，請自由取用。
+- MIT.
