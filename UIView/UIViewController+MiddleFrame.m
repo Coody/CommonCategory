@@ -15,16 +15,17 @@
 
 -(CGRect)getMiddleFrame{
     CGRect tempFrame = [SafeAreaTool getSafeAreaFrame];
-    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
+    CGFloat statusBarHeight = ( ([SafeAreaTool getSafeAreaInsets].top > 0) ? 0.0f : [[UIApplication sharedApplication] statusBarFrame].size.height);
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
-                           statusBarSize.height +
+                           statusBarHeight +
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
                            tempFrame.size.height -
-                           statusBarSize.height -
+                           statusBarHeight -
                            self.navigationController.navigationBar.frame.size.height -
-                           self.tabBarController.tabBar.frame.size.height);
+                           self.tabBarController.tabBar.frame.size.height +
+                           [SafeAreaTool getSafeAreaInsets].bottom);
     return tempFrame;
 }
 
