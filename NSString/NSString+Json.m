@@ -11,13 +11,17 @@
 @implementation NSString (Json)
 
 -(NSData *)convertJsonData{
-    id jsonData = nil;
+    return [self dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+-(NSDictionary *)convertToJsonDic{
+    NSDictionary *jsonData = nil;
     NSError *error = nil;
     @try
     {
         NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
-        jsonData = [NSJSONSerialization JSONObjectWithData:data 
-                                                   options:kNilOptions 
+        jsonData = [NSJSONSerialization JSONObjectWithData:data
+                                                   options:kNilOptions
                                                      error:&error];
     }
     @catch (NSException *exception)

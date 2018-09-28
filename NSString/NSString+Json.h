@@ -12,4 +12,6 @@
 
 -(NSData *)convertJsonData;
 
+-(NSDictionary *)convertToJsonDic;
+
 @end
