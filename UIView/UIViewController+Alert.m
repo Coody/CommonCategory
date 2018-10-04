@@ -121,7 +121,7 @@
         }
     }
     else{
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认"
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {
                                                              if( responseBlock != nil ){
