@@ -14,7 +14,7 @@
 @implementation UIViewController (MiddleFrame)
 
 -(CGRect)getMiddleFrame{
-    CGRect tempFrame = [SafeAreaTool getSafeAreaFrame];
+    CGRect tempFrame = [[self class] getSafeAreaFrame];
     CGFloat statusBarHeight = ( ([SafeAreaTool getSafeAreaInsets].top > 0) ? 0.0f : [[UIApplication sharedApplication] statusBarFrame].size.height);
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
@@ -25,8 +25,19 @@
                            statusBarHeight -
                            self.navigationController.navigationBar.frame.size.height -
                            self.tabBarController.tabBar.frame.size.height +
-                           [SafeAreaTool getSafeAreaInsets].bottom);
+                           [[self class] getSafeAreaInsets].bottom);
     return tempFrame;
+}
+
+#pragma mark - Private
++(UIEdgeInsets)getSafeAreaInsets{
+    UIEdgeInsets safeInsets;
+    if ( @available( iOS 11.0 , * ) ) {
+        safeInsets = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
+    } else {
+        safeInsets = [[[UIApplication sharedApplication] delegate] window].alignmentRectInsets;
+    }
+    return safeInsets;
 }
 
 @end

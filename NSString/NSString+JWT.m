@@ -8,9 +8,6 @@
 
 #import "NSString+JWT.h"
 
-#import "JWT.h"
-#import "JWTAlgorithm.h"
-
 @implementation NSString (JWT)
 
 -(NSDictionary *)decodeWithHS256{
