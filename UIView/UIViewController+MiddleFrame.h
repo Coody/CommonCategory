@@ -15,5 +15,7 @@
  */
 -(CGRect)getMiddleFrame;
 
+-(CGRect)getBottomFrame;
+
 @end
 

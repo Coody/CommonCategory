@@ -15,14 +15,26 @@
 
 -(CGRect)getMiddleFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
-    UIEdgeInsets test = [self getSafeAreaInsets];
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
-                           tempFrame.size.height -
+                           tempFrame.size.height - 
                            self.navigationController.navigationBar.frame.size.height -
                            self.tabBarController.tabBar.frame.size.height +
+                           [self getSafeAreaInsets].bottom);
+    return tempFrame;
+}
+
+-(CGRect)getBottomFrame{
+    CGRect tempFrame = [self getSafeAreaFrame];
+    CGFloat test = self.navigationController.navigationBar.frame.size.height;
+    tempFrame = CGRectMake(tempFrame.origin.x,
+                           tempFrame.origin.y +
+                           self.navigationController.navigationBar.frame.size.height,
+                           tempFrame.size.width,
+                           tempFrame.size.height - 
+                           self.navigationController.navigationBar.frame.size.height +
                            [self getSafeAreaInsets].bottom);
     return tempFrame;
 }
