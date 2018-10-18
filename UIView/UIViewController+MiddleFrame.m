@@ -28,7 +28,6 @@
 
 -(CGRect)getBottomFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
-    CGFloat test = self.navigationController.navigationBar.frame.size.height;
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
                            self.navigationController.navigationBar.frame.size.height,
