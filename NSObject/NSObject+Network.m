@@ -21,20 +21,19 @@ NSString *const kNSObjectService_NetworkFailKey = @"kNSObjectService_NetworkFail
     static BOOL isFirstTime = YES;
     if( isFirstTime ){
         isFirstTime = NO;
-        
-        
+        __weak __typeof(self)weakSelf = self;
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+            __strong __typeof(weakSelf)strongSelf = weakSelf;
             NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
             if( status == AFNetworkReachabilityStatusNotReachable ){
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:kNSObjectService_NetworkFailKey
-                 object:self userInfo:nil];
-                
+                 object:strongSelf userInfo:nil];
             }
             else{
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:kNSObjectService_NetworkOkKey
-                 object:self userInfo:nil];
+                 object:strongSelf userInfo:nil];
             }
         }];
         
