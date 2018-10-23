@@ -15,11 +15,14 @@
 
 -(CGRect)getMiddleFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
+    CGFloat statusBar = [self getSafeAreaInsets].top == 0 ? [UIApplication sharedApplication].statusBarFrame.size.height : 0;
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
+                           statusBar +
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
                            tempFrame.size.height - 
+                           statusBar -
                            self.navigationController.navigationBar.frame.size.height -
                            self.tabBarController.tabBar.frame.size.height +
                            [self getSafeAreaInsets].bottom);
@@ -28,11 +31,14 @@
 
 -(CGRect)getBottomFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
+    CGFloat statusBar = [self getSafeAreaInsets].top == 0 ? [UIApplication sharedApplication].statusBarFrame.size.height : 0;
     tempFrame = CGRectMake(tempFrame.origin.x,
                            tempFrame.origin.y +
+                           statusBar +
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
                            tempFrame.size.height - 
+                           statusBar -
                            self.navigationController.navigationBar.frame.size.height +
                            [self getSafeAreaInsets].bottom);
     return tempFrame;
