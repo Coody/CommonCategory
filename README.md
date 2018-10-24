@@ -66,7 +66,10 @@
 * UIViewController+PopVC.h
 * UIViewController+PushVC.h
 * UITextField+ClearButton.h
-* UIViewController+MiddleFrame
+* UIViewController+MiddleFrame.h
+* UIView+Badget.h <--- Any UIView can add Red Badget !
+* AppToast.h <--- Toast , can show forever toast and insert any short time toast when showing forever toast.
+* UIView+EmptyLabel <--- Can add Empty Label if no data in TableView or CollectionView easily.
 
 # 聲明
 - 此 License 屬於 MIT ，請自由取用。
