@@ -14,7 +14,7 @@ extern CGFloat const kEmptyLabel_DefaultTopMargin;
 
 @interface UIView (EmptyLabel)
 @property (nonatomic , strong) UILabel *emptyLabel;
-@property (nonatomic , assign) CGFloat topMargin;
+@property (nonatomic , assign) CGFloat emptyTopMargin;
 @property (nonatomic , strong) UIFont *emptyFont;
 -(void)showEmptyLabel:(nonnull NSString *)context;
 -(void)hideEmptyLabel;

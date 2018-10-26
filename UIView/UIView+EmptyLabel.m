@@ -36,12 +36,12 @@ Dynamic_Property(UILabel *, emptyLabel, setEmptyLabel:)
 Dynamic_Property(UIFont *, emptyFont, setEmptyFont:)
 Dynamic_Property(NSNumber *, emptyLabelTopMargin, setEmptyLabelTopMargin:)
 
--(CGFloat)topMargin{
+-(CGFloat)emptyTopMargin{
     return [self.emptyLabelTopMargin floatValue];
 }
 
--(void)setTopMargin:(CGFloat)topMargin{
-    self.emptyLabelTopMargin = @(topMargin);
+-(void)setEmptyTopMargin:(CGFloat)emptyTopMargin{
+    self.emptyLabelTopMargin = @(emptyTopMargin);
 }
 
 -(void)showEmptyLabel:(nonnull NSString *)context{
@@ -52,12 +52,12 @@ Dynamic_Property(NSNumber *, emptyLabelTopMargin, setEmptyLabelTopMargin:)
         self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.frame.size.width - size.width)*0.5, 
                                                                     [self.emptyLabelTopMargin floatValue],
                                                                     size.width, size.height)];
-        self.emptyLabel.text = context;
         [self.emptyLabel setTextColor:[UIColor blackColor]];
         self.emptyLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
         UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | 
         UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
     }
+    self.emptyLabel.text = context;
     [self.emptyLabel setHidden:NO];
     [self addSubview:self.emptyLabel];
 }
