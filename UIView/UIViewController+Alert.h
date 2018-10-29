@@ -50,14 +50,23 @@
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg;
 
+/**
+ * @brief - (NSNumber *)errorCode , (NSString *)errorMsg , (NSString *)title
+ */
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg
                withAlertTitle:(NSString *)title;
 
+/**
+ * @brief - (NSNumber *)errorCode , (NSString *)errorMsg , responseBlock
+ */
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg
             withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
+/**
+ * @brief - (NSNumber *)errorCode , (NSString *)errorMsg , (NSString *)title , responseBlock
+ */
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg
                withAlertTitle:(NSString *)title
