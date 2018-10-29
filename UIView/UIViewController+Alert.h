@@ -10,25 +10,43 @@
 
 @interface UIViewController (Alert)
 
-// Normal
+#pragma mark - Normal Alert
+/**
+ * @brief - (NSString *)msg
+ */
 -(void)showAlertWithMsg:(NSString *)msg;
 
+/**
+ * @brief - (NSString *)msg , (NSString *)title
+ */
 -(void)showAlertWithMsg:(NSString *)msg 
               withTitle:(NSString *)title;
 
+/**
+ * @brief - (NSString *)msg , (void(^)(NSInteger buttonIndex))responseBlock
+ */
 -(void)showAlertWithMsg:(NSString *)msg 
       withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
+/**
+ * @brief - (NSString *)msg , (NSString *)title , (void(^)(NSInteger buttonIndex))responseBlock
+ */
 -(void)showAlertWithMsg:(NSString *)msg 
               withTitle:(NSString *)title 
       withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
+/**
+ * @brief - (NSString *)msg , (NSString *)title , (NSArray<NSString *> *)buttonArray , (void(^)(NSInteger buttonIndex))responseBlock
+ */
 -(void)showAlertWithMsg:(NSString *)msg 
               withTitle:(NSString *)title 
           withBtnTitles:(NSArray<NSString *>*)btnArray 
       withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
-// Error
+#pragma mark - Error Alert
+/**
+ * @brief - (NSNumber *)errorCode , (NSString *)errorMsg
+ */
 -(void)showAlertWithErrorCode:(NSNumber *)number
                  withErrorMsg:(NSString *)msg;
 
