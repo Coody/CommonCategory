@@ -49,10 +49,11 @@ Dynamic_Property(NSNumber *, emptyLabelTopMargin, setEmptyLabelTopMargin:)
     self.emptyFont = self.emptyFont ? self.emptyFont : D_EmptyLabel_DefaultFont;
     if( !self.emptyLabel ){
         CGSize size = [UIView getTextSizeWithWidth:self.frame.size.width withText:context withFont:self.emptyFont];
-        self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.frame.size.width - size.width)*0.5, 
+        self.emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 
                                                                     [self.emptyLabelTopMargin floatValue],
-                                                                    size.width, size.height)];
+                                                                    [UIScreen mainScreen].bounds.size.width, size.height)];
         [self.emptyLabel setTextColor:[UIColor blackColor]];
+        [self.emptyLabel setTextAlignment:(NSTextAlignmentCenter)];
         self.emptyLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | 
         UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | 
         UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
