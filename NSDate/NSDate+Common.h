@@ -57,7 +57,7 @@ extern NSString *const kDateFormat_yyyy_MM_dd;
 
 /**
  * @brief   - 將 NSDate 轉成 NSString（自定格式）
- * @params  - formatterString 為自定的格式，如：@"yyyy/MM/dd"
+ * @params  formatterString 為自定的格式，如：@"yyyy/MM/dd"
  */
 + (NSString *)getDateFormatterWithDate:(NSDate *)date 
                    withFormatterString:(NSString *)formatterString;
