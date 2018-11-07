@@ -104,7 +104,7 @@ Dynamic_Property(NSNumber *, isKeyboardShow, setIsKeyboardShow:)
              [strongSelf.mainScrollView setFrame:CGRectMake(strongSelf.mainScrollView.frame.origin.x,
                                                             strongSelf.mainScrollView.frame.origin.y,
                                                             strongSelf.mainScrollView.frame.size.width,
-                                                            strongSelf.mainScrollView.frame.size.height - keyboardBounds.size.height + [self getSafeAreaInsets].bottom)];
+                                                            strongSelf.mainScrollView.frame.size.height - keyboardBounds.size.height + [strongSelf getSafeAreaInsets].bottom)];
          }completion:^(BOOL finished) {
              __strong __typeof(weakSelf)strongSelf = weakSelf;
              [strongSelf checkScroll];
@@ -137,8 +137,8 @@ Dynamic_Property(NSNumber *, isKeyboardShow, setIsKeyboardShow:)
              [UIView setAnimationCurve:keyboardAnimationCurve];
              [strongSelf.mainScrollView setFrame:CGRectMake(strongSelf.mainScrollView.frame.origin.x,
                                                             strongSelf.mainScrollView.frame.origin.y,
-                                                            self.frame.size.width , 
-                                                            self.frame.size.height)];
+                                                            strongSelf.frame.size.width , 
+                                                            strongSelf.frame.size.height)];
          }completion:^(BOOL finished) {
              __strong __typeof(weakSelf)strongSelf = weakSelf;
              [strongSelf checkScroll];
