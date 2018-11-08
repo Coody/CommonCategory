@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (Keyboard)
+@property (nonatomic , readonly) UIScrollView *mainScrollView;
 
 -(void)initialKeyboardHeightObserver;
 
