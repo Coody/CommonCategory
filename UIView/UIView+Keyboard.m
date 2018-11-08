@@ -39,6 +39,7 @@ Dynamic_Property(NSNumber *, isKeyboardShow, setIsKeyboardShow:)
 
 -(void)initialKeyboardHeightObserver{
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:self.frame];
+    self.mainScrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.mainScrollView.contentSize = self.frame.size;
     UIView *superView = self.superview;
     [self.mainScrollView addSubview:self];

@@ -11,18 +11,38 @@
 // for Tools
 #import "SafeAreaTool.h"
 
+#include <objc/runtime.h>
+
+#pragma makr - Dynamic Property
+////////////////////////////////
+#define Dynamic_Property( ObjectType , property , setProperty )\
+Dynamic_Property_Getter( ObjectType , property)\
+Dynamic_Property_Setter( ObjectType , property , setProperty , OBJC_ASSOCIATION_RETAIN_NONATOMIC )
+//////// Getter ////////
+#define Dynamic_Property_Getter( ObjectType , property )\
+-(ObjectType)property\
+{\
+return objc_getAssociatedObject( self, @selector(property) );\
+}
+//////// Setter ////////
+#define Dynamic_Property_Setter( ObjectType , property , setProperty , associationFlag) \
+-(void)setProperty(ObjectType)property\
+{\
+objc_setAssociatedObject(self, @selector(property), property, associationFlag);\
+}
+////////////////////////////////
+
 @implementation UIViewController (MiddleFrame)
+Dynamic_Property(NSNumber*, statusBarHeight, setStatusBarHeight: )
 
 -(CGRect)getMiddleFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
-    CGFloat statusBar = [self getSafeAreaInsets].top == 0 ? [UIApplication sharedApplication].statusBarFrame.size.height : 0;
+    CGFloat statusBarHeight = ([self getSafeAreaInsets].top > 40 ? [self getSafeAreaInsets].top : 20);
     tempFrame = CGRectMake(tempFrame.origin.x,
-                           tempFrame.origin.y +
-                           statusBar +
+                           statusBarHeight + 
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
                            tempFrame.size.height - 
-                           statusBar -
                            self.navigationController.navigationBar.frame.size.height -
                            self.tabBarController.tabBar.frame.size.height +
                            [self getSafeAreaInsets].bottom);
@@ -31,15 +51,13 @@
 
 -(CGRect)getBottomFrame{
     CGRect tempFrame = [self getSafeAreaFrame];
-    CGFloat statusBar = [self getSafeAreaInsets].top == 0 ? [UIApplication sharedApplication].statusBarFrame.size.height : 0;
+    CGFloat statusBarHeight = ([self getSafeAreaInsets].top > 40 ? [self getSafeAreaInsets].top : 20);
     tempFrame = CGRectMake(tempFrame.origin.x,
-                           tempFrame.origin.y +
-                           statusBar +
+                           statusBarHeight + 
                            self.navigationController.navigationBar.frame.size.height,
                            tempFrame.size.width,
                            tempFrame.size.height - 
-                           statusBar -
-                           self.navigationController.navigationBar.frame.size.height +
+                           self.navigationController.navigationBar.frame.size.height + 
                            [self getSafeAreaInsets].bottom);
     return tempFrame;
 }
