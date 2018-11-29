@@ -72,4 +72,12 @@
                withAlertTitle:(NSString *)title
             withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
 
+/**
+ * @brief - Action Sheet Alert : (NSString *)title , (NSString *)msg , (NSArray *)actionSheetArray , responseBlock
+ */
+-(void)showAlertWithActionSheetWithTitle:(NSString *)title 
+                                 withMsg:(NSString *)msg 
+                        withActionSheets:(NSArray<NSString *> *)actionSheetArray 
+                       withResponseBlock:(void(^)(NSInteger buttonIndex))responseBlock;
+
 @end
